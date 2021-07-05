@@ -1,4 +1,7 @@
+import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import { Component } from '@angular/core';
+import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +9,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'aplII';
+
+  constructor(private breakpointObserver: BreakpointObserver) {}
+
+  isSmall$: Observable<boolean> = this.breakpointObserver
+    .observe([Breakpoints.Small, Breakpoints.XSmall])
+    .pipe(map((result) => result.matches))
 }

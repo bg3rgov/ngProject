@@ -1,0 +1,19 @@
+.wrapper {
+
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: flex-start;
+    justify-content: center;
+    width: 50%;
+    margin: 50px auto;
+}
+
+
+
+.wrapper-tasks {
+
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+}

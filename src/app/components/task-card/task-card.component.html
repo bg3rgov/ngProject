@@ -1,0 +1,34 @@
+<mat-card class="card">
+    <mat-card-header>
+      <mat-card-title>Task: {{task.task_number}}</mat-card-title>
+      <mat-card-subtitle>{{task.task_title}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content class="card-description">
+      <p>
+        {{task.task_description | titlecase}}
+      </p>
+    </mat-card-content>
+    <mat-card-content #expandableContent class="hidden-content">
+      <div>
+        <h3 [@bodyExpansion]="state" class="expandable-content">  
+          Access requirements
+        </h3>
+        <a 
+          *ngFor="let access of task.access_requirements"
+          routerLink="/access-details"
+          [queryParams]="{ task_number: task.task_number, access: access.description }"
+          [@bodyExpansion]="state" 
+          class="expandable-content"
+        >
+          {{access.description}}
+        </a>
+      </div>
+    </mat-card-content>
+    <mat-divider></mat-divider>
+    <mat-card-actions align="end">
+      <button class="access-btn" mat-button (click)="toggle()" color="primary">{{state === 'collapsed' ? 'Show Access' : 'Hide'}}</button>
+      <span class="spacer"></span>
+      <button mat-stroked-button color="primary">Edit</button>
+      <button mat-flat-button color="accent">Details</button>
+    </mat-card-actions>
+</mat-card>

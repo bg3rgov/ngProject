@@ -1,0 +1,50 @@
+mat-card {
+
+    height: 100%;
+}
+
+.content-wrapper {
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0 5rem;
+}
+
+.content-wrapper-info {
+
+    flex-basis: 50%;
+    height: 500px;
+}
+
+.content-wrapper-info-card {
+
+    width: 100%;
+    height: 100%;
+    margin-top: 2rem;
+    padding: 3rem;
+    border-radius: 5px;
+    background: #e3e3e3;
+}
+
+.content-wrapper-info-card p {
+
+    font-size: 1rem;
+}
+
+.content-wrapper-img {
+
+    flex-basis: 40%;
+}
+
+.content-wrapper-img img {
+
+    width: 100%;
+    height: calc(100vh - 6rem);
+}
+
+.spacer {
+
+    flex: 1 1 auto;
+}

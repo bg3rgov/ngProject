@@ -7,18 +7,24 @@ li {
 }
 
 a {
-
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
     text-decoration:  none;
     color: white;
 }
 
 mat-sidenav-content {
 
-    background-color: #767676;
+    background-color: #e3e3e3;
 }
 
 mat-toolbar{
-
+    position: sticky;
+    top: 0px;
+    z-index: 99;
+    font-size: 1rem;
+    font-weight: 400;
     box-shadow: 0px 2px 13px -4px rgba(0,0,0,0.62);
 }
 
@@ -34,5 +40,10 @@ button{
 
 button mat-icon{
 
-    font-size: 2rem;
+    font-size: 26px;
+}
+
+.active {
+
+    color: #FFD740;
 }

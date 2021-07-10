@@ -1,18 +1,32 @@
-
-
 <div class="wrapper">
+    <!-- toolbar element -->
+    <div class="wrapper-tools">
+        <button mat-button color="primary"><span>New Task</span></button>
+        <div class="wrapper-tools-search">
+            <form>
+                <input type="text">
+                <button mat-button color="primary" class="search-btn">
+                    <mat-icon>
+                        search
+                    </mat-icon>
+                </button>
+            </form>
+        </div>
+    </div>
     <div class="wrapper-tasks">
         <app-task-card *ngFor="let task of tasks" [task]="task"></app-task-card>
     </div>
-    <div class="wrapper-details">
-        <div class="wrapper-details-img">
-            
+    <!-- info element -->
+    <mat-card class="wrapper-info">
+        <mat-card-header>
+            <mat-card-title>Airbus A320F</mat-card-title>
+            <mat-card-subtitle>MPD Revision: 01-May-2021</mat-card-subtitle>
+            <mat-card-subtitle>AMM Revision: 01-May-2021</mat-card-subtitle>
+        </mat-card-header>
+        <div class="wrapper-info-img">
+            <!-- <img src="https://seeklogo.com/images/A/airbus-logo-621B603EF9-seeklogo.com.png" alt=""> -->
+            <img src=" https://www.pngitem.com/pimgs/m/668-6685407_airbus-a320-neo-png-transparent-png.png" alt="">
+           
         </div>
-        <!-- <mat-card>
-            <mat-card-header>
-                <mat-card-title>Title</mat-card-title>
-                <mat-card-subtitle>Subtitle</mat-card-subtitle>
-            </mat-card-header>
-        </mat-card> -->
-    </div>
+    </mat-card>
 </div>

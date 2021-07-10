@@ -1,7 +1,5 @@
 mat-card {
 
-    width: 700px;
-    
     margin: 50px auto auto auto;
 }
 
@@ -35,7 +33,7 @@ mat-card-content {
 
 .expandableContent{
 
-    background-color: #dfdfdf;
+    background-color: #e3e3e3;
     padding: 16px;
     border-radius: 5px;
 }

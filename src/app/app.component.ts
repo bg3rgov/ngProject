@@ -13,6 +13,6 @@ export class AppComponent {
   constructor(private breakpointObserver: BreakpointObserver) {}
 
   isSmall$: Observable<boolean> = this.breakpointObserver
-    .observe([Breakpoints.Small, Breakpoints.XSmall])
+    .observe([Breakpoints.Medium, Breakpoints.Small, Breakpoints.XSmall])
     .pipe(map((result) => result.matches))
 }

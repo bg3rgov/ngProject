@@ -16,11 +16,11 @@
         <a 
           *ngFor="let access of task.access_requirements"
           routerLink="/access-details"
-          [queryParams]="{ task_number: task.task_number, access: access.description }"
+          [queryParams]="{ task_number: task.task_number, access_title: access.access_title }"
           [@bodyExpansion]="state" 
           class="expandable-content"
         >
-          {{access.description}}
+          {{access.access_title}}
         </a>
       </div>
     </mat-card-content>

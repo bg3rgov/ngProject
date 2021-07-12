@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,11 +16,13 @@ import {MatCardModule} from '@angular/material/card';
 import {LayoutModule} from '@angular/cdk/layout';
 import { TaskListComponent } from './components/task-list/task-list.component';
 import { AccessDetailsComponent } from './components/access-details/access-details.component';
-import { AccessTabsComponent } from './access-tabs/access-tabs.component';
 import {MatSidenavModule} from '@angular/material/sidenav'; 
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatInputModule} from '@angular/material/input'; 
-import {MatDividerModule} from '@angular/material/divider'; 
+import {MatDividerModule} from '@angular/material/divider';
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { InfoCardComponent } from './components/info-card/info-card.component';
+import { NewTaskComponent } from './components/new-task/new-task.component'; 
 
 @NgModule({
   declarations: [
@@ -27,13 +30,17 @@ import {MatDividerModule} from '@angular/material/divider';
     TaskCardComponent,
     TaskListComponent,
     AccessDetailsComponent,
-    AccessTabsComponent,
+    ToolbarComponent,
+    InfoCardComponent,
+    NewTaskComponent,
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
+    FormsModule,
     MatExpansionModule,
     MatToolbarModule,
     MatDividerModule,

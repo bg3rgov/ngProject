@@ -1,0 +1,79 @@
+<mat-card class="wrapper-form">
+    <form #form="ngForm" [formGroup]="newTaskForm" (ngSubmit)="onSubmit()">
+
+        <mat-form-field appearance="outline">
+            <mat-label>Task Number</mat-label>
+            <input
+                formControlName="task_number" 
+                matInput>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Title</mat-label>
+            <input
+                formControlName="task_title" 
+                matInput>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Description</mat-label>
+            <textarea
+                formControlName="task_description" 
+                matInput>
+            </textarea>
+        </mat-form-field>
+
+        <div class="wrapper-form-access" formArrayName="access_requirements">
+            <h3>Access Requirements</h3>
+
+            <div class="access-row" *ngFor="let accessCtrls of controls; let i = index" [formGroupName]="i">
+                <input #access_title formControlName="access_title" type="text">
+                <button 
+                    color="warn"
+                    type="button"
+                    mat-flat-button 
+                    *ngIf="i !== lastRow"
+                    (click)="onRemoveAccessRequirements(i)"    
+                ><mat-icon>clear</mat-icon></button>
+                <button
+                    color="warn"
+                    type="button"
+                    #accessButton
+                    data-value="-"
+                    mat-flat-button 
+                    [disabled]="i==0 && !access_requirements.valid"
+                    *ngIf="i !== 0 && lastRow === i && !access_requirements.valid"
+                    (click)="manageFields()"
+                ><mat-icon>clear</mat-icon></button>
+                <button 
+                    #accessButton
+                    type="button"
+                    color="primary"
+                    data-value="+" 
+                    mat-flat-button
+                    [disabled]="i==0 && !access_requirements.valid"
+                    *ngIf="i !== 0 && lastRow === i && access_requirements.valid"
+                    (click)="manageFields()"
+                ><mat-icon>add</mat-icon></button>
+                <button 
+                    type="button"
+                    color="primary"
+                    #accessButton
+                    mat-flat-button
+                    [disabled]="i==0 && !access_requirements.valid" 
+                    *ngIf="i == 0 && lastRow === i"
+                    data-value="+"
+                    (click)="manageFields()"
+                ><mat-icon>add</mat-icon></button>
+            </div>
+        </div>
+        <br>
+        <div class="wrapper-form-button">
+            <button
+                [disabled]="form.invalid"
+                mat-raised-button color='primary'>
+                Submit
+            </button>
+        </div>
+    </form>
+</mat-card>
+
+    

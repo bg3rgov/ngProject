@@ -1,0 +1,19 @@
+<mat-card>
+    <a routerLink="/new-task" mat-button color="primary"><span>New Task</span></a>
+    <div class="wrapper-tools-search">
+        <form>
+            <input #taskInput type="text">
+            <button
+                mat-button 
+                color="primary" 
+                class="search-btn"
+                routerLink="/tasks"
+                [queryParams]="{ task_number: taskInput.value }">
+                <mat-icon>
+                    search
+                </mat-icon>
+            </button>
+        </form>
+    </div>
+</mat-card>
+

@@ -1,0 +1,35 @@
+mat-card {
+
+    display: flex;
+    flex-flow: row  nowrap;
+    justify-content: space-between;
+}
+
+.wrapper-tools-search {
+
+    flex-basis: 70%;
+}
+
+.wrapper-tools-search  form{
+
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+    border: 2px solid #7B1FA2;
+    border-radius: 5px;
+}
+
+input {
+
+    flex-grow: 1;
+    padding: .5rem;
+    border: none;
+    outline: none;
+}
+
+/* #7B1FA2; */
+.search-btn {
+
+    border: none;
+}

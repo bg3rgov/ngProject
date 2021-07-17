@@ -7,11 +7,6 @@
               <mat-icon>library_books</mat-icon>
               <span>Tasks</span>
           </a>
-
-          <a mat-list-item routerLink="about">
-              <mat-icon>image</mat-icon>
-              <span>Figures</span>
-          </a>
           <a mat-list-item routerLink="about">
             <mat-icon>design_services</mat-icon>
             <span>Projects</span>
@@ -38,14 +33,11 @@
     <ul *ngIf="!(isSmall$ | async)">
       <li>
         <a routerLink="/tasks" routerLinkActive="active">
-          Tasks
+          {{'Tasks' | uppercase}}
         </a>
       </li>
       <li>
-        <a routerLink="/figures">{{'Figures'}}</a>
-      </li>
-      <li>
-        <a routerLink="/projects">{{'Projects'}}</a>
+        <a routerLink="/projects">{{'Projects' | uppercase}}</a>
       </li>
     </ul>
     <span class="spacer"></span>

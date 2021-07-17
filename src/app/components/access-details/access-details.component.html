@@ -1,22 +1,22 @@
 <mat-card>
     <mat-tab-group>
-        <mat-tab *ngFor="let access of access_requirements; index as i" [label]="access.figure_number">
+        <mat-tab *ngFor="let option of options; index as i" [label]="option.figure_number">
             <div class="content-wrapper">
                 <div class="content-wrapper-info">
                     <mat-card class="content-wrapper-info-card">
                         <mat-card-header>
-                            <mat-card-title>Task: 200171-01-1</mat-card-title>
-                            <mat-card-subtitle>AFT Cabin Floor Panels - Option {{i+1}}</mat-card-subtitle>
+                            <mat-card-title>Task: {{task.task_number}}</mat-card-title>
+                            <mat-card-subtitle>{{task.task_title}} - Option {{i+1}}</mat-card-subtitle>
                         </mat-card-header>
                         <mat-card-content>
-                            <h1>AFT CABIN UNDERFLOOR COMPARTMENT</h1>
-                            <p>{{access.access_description}}</p>
-                            <p>{{access.requiredPanels}}</p>
+                            <h1>{{task.access_requirement.access_title}}</h1>
+                            <p>{{option.access_description}}</p>
+                            <p>{{option.requiredPanels}}</p>
                         </mat-card-content>
                     </mat-card>
                 </div>
                 <div class="content-wrapper-img">
-                    <img src="../../../assets/images/{{access.figure_number}}.png" alt="">
+                    <img src="../../../assets/images/{{option.figure_number}}.png" alt="">
                 </div>
             </div>
         </mat-tab>

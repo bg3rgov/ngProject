@@ -28,7 +28,7 @@ export class NewTaskComponent implements OnInit {
 
   onSubmit() {
 
-    console.log(this.newTaskForm.value.task_number);
+  
     let task_number = this.newTaskForm.value.task_number;
     let task_title = this.newTaskForm.value.task_title;
     let task_description = this.newTaskForm.value.task_description;

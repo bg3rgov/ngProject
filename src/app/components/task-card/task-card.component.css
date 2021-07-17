@@ -3,6 +3,11 @@ mat-card {
     margin: auto auto 50px auto;
 }
 
+.spacer {
+
+    flex: 1 1 auto;
+}
+
 mat-card-content {
 
     margin: 16px;
@@ -66,4 +71,35 @@ mat-card-actions {
 
     position: absolute;
     left: 0;
+}
+
+.buttons-wrapper {
+
+    padding: 0rem .5rem;
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid lightgray;
+    border-radius: 5px;
+}
+
+.buttons-wrapper a{
+
+    flex-grow: 1;
+}
+
+.buttons-wrapper:hover {
+
+    background-color: gray;
+}
+
+.buttons-wrapper:hover a {
+
+    color: #fff;
+}
+.buttons-wrapper:hover button {
+
+    color: #fff;
 }

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { Option } from 'src/app/models/access.model';
+import { Task } from 'src/app/models/task.model';
+import { TaskService } from 'src/app/services/task.service';
 
 @Component({
   selector: 'app-access-details',
@@ -8,30 +11,25 @@ import { ActivatedRoute, Params } from '@angular/router';
 })
 export class AccessDetailsComponent implements OnInit {
 
-  access_requirements = [
+  task;
+  options = [];
 
-    {
-      access_description: 'Cabin floor panels FR12-24',
-      figure_number:'06-41-53-14600-00-AZ', 
-      requiredPanels: '111A, 111B,111A, 111B,111A, 111B,111A, 111B,111A, 111B,111A, 111B,111A, 111B, 111A, 111B, 111A, 111B, 111A, 111B, 111A, 111B, 111A, 111B, 111A, 111B, 111A, 111B, 111A, 111B, 111A, 111B'
-    },
-
-    {
-      access_description: 'Cabin floor panels FR12-24',
-      figure_number: '06-41-53-14800-00-F',
-      requiredPanels: '222A, 222B'
-    }
-  ]
+  constructor(
     
-
-  constructor(private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private taskService: TaskService,
+  ) { }
 
   ngOnInit(): void {
 
-    this.route.params.subscribe((params: Params) => {
+    this.route.queryParams.subscribe(queryParams => {
 
-      console.log(params['task_number'])
+      this.taskService.getTask(queryParams.id, queryParams.access_title)
+      .subscribe((response: {task_number: string, task_title: string, task_description: string, access_requirement:{access_title: string, options: Option[]}, taskId: string}) => {
+
+        this.task = response;
+        this.options = this.task.access_requirement.options;
+      })
     })
   }
-
 }

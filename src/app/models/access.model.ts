@@ -1,6 +1,6 @@
 export interface Option {
 
-    access_description: string, 
+    access_description?: string, 
     figure_number: string;
     requiredPanels: string;
 }

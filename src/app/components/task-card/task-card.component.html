@@ -2,6 +2,15 @@
     <mat-card-header>
       <mat-card-title>Task: {{task.task_number}}</mat-card-title>
       <mat-card-subtitle>{{task.task_title}}</mat-card-subtitle>
+      <span class="spacer"></span>
+      <button 
+        (click)="onDeleteTask(task._id)" 
+        mat-icon-button 
+        color="warn">
+        <mat-icon>
+          clear
+        </mat-icon>
+      </button>
     </mat-card-header>
     <mat-card-content class="card-description">
       <p>
@@ -13,15 +22,21 @@
         <h3 [@bodyExpansion]="state" class="expandable-content">  
           Access requirements
         </h3>
-        <a 
-          *ngFor="let access of task.access_requirements"
+        <div [@bodyExpansion]="state" class="buttons-wrapper" *ngFor="let access of task.access_requirements">
+          <a 
           routerLink="/access-details"
-          [queryParams]="{ task_number: task.task_number, access_title: access.access_title }"
+          [queryParams]="{id: task._id, access_title: access.access_title }"
           [@bodyExpansion]="state" 
           class="expandable-content"
-        >
-          {{access.access_title}}
-        </a>
+          >
+          <span>{{access.access_title}}</span>
+          </a>
+          <button  mat-icon-button color="primary" [@bodyExpansion]="state"(click)="openDialog(task._id, access.access_title)">
+            <mat-icon>
+              note_add
+            </mat-icon>
+          </button>
+        </div>
       </div>
     </mat-card-content>
     <mat-divider></mat-divider>

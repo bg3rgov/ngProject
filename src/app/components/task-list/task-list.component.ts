@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { concatMap } from 'rxjs/operators';
+import { Task } from 'src/app/models/task.model';
 import { TaskService } from 'src/app/services/task.service';
 
 @Component({
@@ -7,10 +10,11 @@ import { TaskService } from 'src/app/services/task.service';
   templateUrl: './task-list.component.html',
   styleUrls: ['./task-list.component.css']
 })
-export class TaskListComponent implements OnInit {
+export class TaskListComponent implements OnInit, OnDestroy {
 
-  tasks = [];
-  task: string;
+  tasks: Task[] = [];
+  searchTask: string;
+  tasksSub: Subscription;
   
   constructor(
     private taskService: TaskService,
@@ -19,14 +23,37 @@ export class TaskListComponent implements OnInit {
 
   ngOnInit(): void {
     
-    this.route.queryParams.subscribe(queryParams => {
+    this.route.queryParams
+    .pipe(
 
-      this.task = queryParams['task_number'];
-      this.tasks = this.taskService.getTasks(this.task);
-      console.log('Task: ' + this.task);
+      concatMap(queryParam => {
+
+        
+        if(queryParam.task_number) { return this.taskService.searchTask(queryParam.task_number) }
+        else {
+
+          return this.taskService.getTasks();
+        }
+      })
+    )
+    .subscribe((response: {message: string, tasks: Task[]}) => {
+
+      this.tasks = response.tasks;
     })
     
-    console.log(this.tasks);
     
+    // this.taskService.getTasks();
+    this.tasksSub = this.taskService.getTasksUpdatedListener().subscribe((tasks: Task[]) => {
+
+      this.tasks = tasks;
+    })
+
+    
+    
+  }
+
+  ngOnDestroy() {
+
+    this.tasksSub.unsubscribe();
   }
 }

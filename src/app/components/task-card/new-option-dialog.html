@@ -1,0 +1,17 @@
+<h3>{{data.task_number}}</h3>
+<h3>{{data.access_requirement.access_title}}</h3>
+<form>
+<label for="">Figure Number</label>
+    <input
+        #figure_number
+        ngModel
+        name="figure_number"
+        type="text">
+    <label for="">Required Panels</label>
+    <input 
+        #requiredPanels
+        ngModel
+        name="Required Panels"
+        type="text">
+    <button type="button" mat-basic-button  color="primary" (click)="onAddOption(figure_number.value, requiredPanels.value)">Add</button>
+</form>

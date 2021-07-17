@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TaskCardComponent } from './components/task-card/task-card.component';
@@ -23,6 +23,9 @@ import {MatDividerModule} from '@angular/material/divider';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { InfoCardComponent } from './components/info-card/info-card.component';
 import { NewTaskComponent } from './components/new-task/new-task.component'; 
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatFormFieldModule} from '@angular/material/form-field';
+
 
 @NgModule({
   declarations: [
@@ -36,16 +39,19 @@ import { NewTaskComponent } from './components/new-task/new-task.component';
 
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    AppRoutingModule,
+    HttpClientModule,
+    BrowserModule,
     FormsModule,
+    MatFormFieldModule,
     MatExpansionModule,
     MatToolbarModule,
     MatDividerModule,
     MatSidenavModule,
     MatButtonModule,
+    MatDialogModule,
     MatInputModule,
     MatListModule,
     MatIconModule,

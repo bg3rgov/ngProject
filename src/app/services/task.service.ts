@@ -150,16 +150,22 @@ export class TaskService {
     return this.tasksUpdated.asObservable();
   }
 
-  searchTask(task: string) {
+  // searchTask(task: string) {
 
-    return this.http.get<Task>('http://localhost:3000/api/tasks/' + task);
-  }
+  //   const query = `?task_number=${task}`;
+  //   console.log(query);
+    
+  //   return this.http.get<Task>('http://localhost:3000/api/tasks/' + query);
+  // }
 
-  getTasks() {
+  getTasks(task_number='') {
 
+    const query = `?task_number=${task_number}`;
+    console.log(query);
+    
     // if(!searchtask) return this.tasks;
     // return this.tasks.filter(t => t.task_number.includes(searchtask));
-    return this.http.get<{message: string, tasks: Task[]}>('http://localhost:3000/api/tasks');
+    return this.http.get<{tasks: Task[]}>('http://localhost:3000/api/tasks' + query);
     // .subscribe(response => {
 
     //   this.tasks = response.tasks;
@@ -205,15 +211,11 @@ export class TaskService {
     return this.http.get(`http://localhost:3000/api/tasks/${taskId}${queryParams}`);
   }
 
-  updateAccessRequirementOption(taskId: string, access_title: string, option: Option) {
+  updateAccessRequirementOption(taskId: string, access_requirement_id: string, option: Option) {
 
-    const queryParams = `?access_title=${access_title}`;
+    // const queryParams = `?access_title=${access_title}`;
 
-    this.http.put(`http://localhost:3000/api/tasks/${taskId}${queryParams}`, option, )
-    .subscribe(response => {
-
-      console.log(response)
-    })
+    return this.http.put(`http://localhost:3000/api/tasks/${taskId}/${access_requirement_id}`, option);
   }
 
 }

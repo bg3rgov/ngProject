@@ -9,6 +9,7 @@ export class Access {
 
     constructor(
         public access_title: string, 
-        public options?: Option[]
+        public options?: Option[],
+        public _id?: string
     ) {}
 }

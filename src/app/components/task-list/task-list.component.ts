@@ -26,30 +26,22 @@ export class TaskListComponent implements OnInit, OnDestroy {
     this.route.queryParams
     .pipe(
 
-      concatMap(queryParam => {
-
-        
-        if(queryParam.task_number) { return this.taskService.searchTask(queryParam.task_number) }
-        else {
-
-          return this.taskService.getTasks();
-        }
-      })
+      concatMap(queryParam => this.taskService.getTasks(queryParam.task_number)),
     )
     .subscribe((response: {message: string, tasks: Task[]}) => {
 
+      console.log(response);
+      
       this.tasks = response.tasks;
+      console.log(this.tasks);
+      
     })
-    
     
     // this.taskService.getTasks();
     this.tasksSub = this.taskService.getTasksUpdatedListener().subscribe((tasks: Task[]) => {
 
       this.tasks = tasks;
     })
-
-    
-    
   }
 
   ngOnDestroy() {

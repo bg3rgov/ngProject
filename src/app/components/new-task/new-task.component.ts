@@ -43,12 +43,8 @@ export class NewTaskComponent implements OnInit {
   }
 
   manageFields() {
-
-    console.log(this.accessButton.nativeElement.dataset.value);
     
     let action:string = this.accessButton.nativeElement.dataset.value;
-    
-
     this.lastRow = this.access_requirements.length - 1;
     if(action === '+') {
 

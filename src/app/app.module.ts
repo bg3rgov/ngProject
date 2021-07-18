@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TaskCardComponent } from './components/task-card/task-card.component';
+import { NewOptionComponent } from './components/new-option/new-option.component';
+
 
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatExpansionModule} from '@angular/material/expansion';
@@ -31,6 +33,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
   declarations: [
     AppComponent,
     TaskCardComponent,
+    NewOptionComponent,
     TaskListComponent,
     AccessDetailsComponent,
     ToolbarComponent,
@@ -60,6 +63,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     LayoutModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [NewOptionComponent]
 })
 export class AppModule { }

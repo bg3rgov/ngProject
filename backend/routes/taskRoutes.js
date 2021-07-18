@@ -9,7 +9,7 @@ router.get('/:id', TaskController.getTaskById)
 // router.get('/:task_number', TaskController.searchTasks);
 
 
-router.put('/:id', TaskController.updateTask);
+router.put('/:taskId/:access_requirement_id', TaskController.createTaskOption);
 
 router.delete('/:id', TaskController.deleteTask);
 

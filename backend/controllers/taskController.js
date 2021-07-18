@@ -35,37 +35,39 @@ exports.createTask = (req, res, next) => {
 
 exports.getTasks = (req, res) => {
 
-    Task.find()
-    .then(tasks => {
+    const searchTask = req.query.task_number;
 
-        res.status(200).json({
+    const query = Task.find();
 
-            message: 'Tasks fetched successfully',
-            tasks
+    if(!searchTask) {
+
+        query.then(tasks => {
+
+            res.status(200).json({
+
+                message: 'Tasks fetched successfully',
+                tasks
+            })
         })
-    })
+    } else {
+
+        query.then(tasks => {
+
+            const task = tasks.filter(task => task.task_number === searchTask);
+            console.log(task)
+            res.status(200).json({message: 'Task fetched', tasks: task})
+        })
+    }
 }
 
-exports.searchTasks = (req, res) => {
-
-    Task.find({task_number: req.params.task_number})
-    .then(task => {
-
-        if(task) {
-
-            res.status(200).json({message: `Tasks found`, tasks: [...task] })
-        } else {
-
-            res.status(404).json({message: 'Task not found!'})
-        }
-    })
-}
 
 exports.getTaskById = (req, res) => {
 
+    
     const access_title = req.query.access_title;
     const taskId = req.params.id;
-
+    console.log(req.params)
+    console.log(taskId)
     Task.findOne({_id: taskId})
     .then(task => {
         if(task) {
@@ -92,32 +94,48 @@ exports.getTaskById = (req, res) => {
     })
 }
 
-exports.updateTask = (req, res) => {
+exports.createTaskOption = (req, res) => {
 
+    if(req.body.figure_number ==='' || req.body.requiredPanels === '') {
 
-    const access_title = req.query.access_title;
-    const taskId = req.params.id;
+        res.status(400).json({message: 'Figure Number and Require Panels are mandatory!'});
+        return;
+    }
+
+    const taskId = req.params.taskId;
+    const access_requirement_id = req.params.access_requirement_id;
     const option = {
 
         figure_number: req.body.figure_number,
         requiredPanels: req.body.requiredPanels
     }
-
-    Task.findOne({_id: req.params.id})
+    
+    Task.findOne({_id: taskId})
     .then(task => {
 
-        const access_requirement = task.access_requirements.find(access_requirement => access_requirement.access_title === access_title);
-        //if !access_requirement - DEVELOP CONDITIONS!!!
+        if(!task) res.status(404).json({message: 'Task Not Found!'});
+        const access_requirement = task.access_requirements.find(access_requirement => {
 
-        access_requirement.options.push(option);
-        task.save()
-        .then(savedTask => {
+            return access_requirement._id == access_requirement_id;
+        });
 
-            console.log(savedTask);
-            res.status(200).json(savedTask)
-        })
+        const status = access_requirement.options.find(opt => opt.figure_number === option.figure_number );
+        if(!status) {
 
+            access_requirement.options.push(option);
+            task.save()
+            .then(savedTask => {
+    
+                res.status(200).json({
+                    message: `New Option created(${option.figure_number}) for Task ${savedTask.task_number}`,
+                    savedTask
+                })
+                return;
+            })
+        } else {
 
+            res.status(500).json({message: `Option ${option.figure_number} is already included!`})
+        }
     })
 }
 
@@ -126,7 +144,6 @@ exports.deleteTask = (req, res) => {
     Task.deleteOne({_id: req.params.id})
     .then(result => {
 
-        console.log(result);
         res.status(200).json({message: 'Post Deleted!'});
     })
 }

@@ -6,10 +6,10 @@
                     <mat-card class="content-wrapper-info-card">
                         <mat-card-header>
                             <mat-card-title>Task: {{task.task_number}}</mat-card-title>
-                            <mat-card-subtitle>{{task.task_title}} - Option {{i+1}}</mat-card-subtitle>
+                            <mat-card-subtitle>{{task.task_title}}</mat-card-subtitle>
                         </mat-card-header>
                         <mat-card-content>
-                            <h1>{{task.access_requirement.access_title}}</h1>
+                            <h1>{{task.access_requirement.access_title}} - Option {{i+1}}</h1>
                             <p>{{option.access_description}}</p>
                             <p>{{option.requiredPanels}}</p>
                         </mat-card-content>

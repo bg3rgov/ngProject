@@ -1,0 +1,25 @@
+.wrapper {
+
+    padding: 1rem;
+    width: 600px;
+    position: relative;
+}
+
+mat-form-field {
+
+    width: 100%;
+}
+
+#close-btn{
+
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+}
+
+span {
+
+    margin-left: 1rem;
+    color: red;
+}

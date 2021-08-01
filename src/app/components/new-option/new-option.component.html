@@ -1,0 +1,27 @@
+<div class="wrapper">
+    
+    <mat-icon id="close-btn" (click)="close()">
+        clear
+    </mat-icon>
+    <h2 mat-dialog-title>{{data.task_number}} | {{data.access_requirement.access_title}}</h2>
+    <form #optionForm="ngForm" (ngSubmit)="onSubmit(optionForm)">
+        <mat-form-field appearance="outline">
+            <input 
+                placeholder="Figure Number"
+                name="figure_number"
+                ngModel
+                required
+                matInput>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <input 
+                placeholder="Required Panels"
+                name="requiredPanels"
+                ngModel
+                required
+                matInput>
+        </mat-form-field>
+        <button mat-raised-button color="primary">Save</button>
+        <span>{{message}}</span>
+    </form>
+</div>

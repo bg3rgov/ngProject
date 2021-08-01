@@ -165,7 +165,7 @@ export class TaskService {
     
     // if(!searchtask) return this.tasks;
     // return this.tasks.filter(t => t.task_number.includes(searchtask));
-    return this.http.get<{tasks: Task[]}>('http://localhost:3000/api/tasks' + query);
+    return this.http.get<{message: string, tasks: Task[]}>('http://localhost:3000/api/tasks' + query);
     // .subscribe(response => {
 
     //   this.tasks = response.tasks;
